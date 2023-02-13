@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  node-test-docker:
+    build: ${SERVICE_PATH}
+    container_name: 'node-test-docker'
+    image: 'node/web-app-test'
+    restart: unless-stopped
+    ports:
+      - ${PORT}:${PORT}
+    volumes:
+      - ${SERVICE_PATH}:${WORK_DIR}
+    networks:
+      - test-services
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    networks:
+      - test-services
+networks:
+  test-services:
+    driver: 'bridge'
+
