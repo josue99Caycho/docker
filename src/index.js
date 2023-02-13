@@ -6,6 +6,7 @@ require(`./database/index`);
 // Constants
 const PORT = 5051;
 
+// Init express
 const app = express();
 
 //Middleware config
